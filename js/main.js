@@ -82,7 +82,7 @@ const renderResponseMovies = (movies) => {
 
         movieTitle.innerText = movie.Title;
         movieYear.innerText = movie.Year;
-        movieType.innerText = movie.Type;
+        translateMovieType(movie, movieType)
 
         movieItem.addEventListener("click", () => {
             const movieID = movie.imdbID;
@@ -124,6 +124,23 @@ const renderDetailMovie = (json) => {
     popupScen.innerText = json.Writer;
     popupActor.innerText = json.Actors;
 };
+
+const translateMovieType = (movie, movieType) => {
+    switch (movie.Type) {
+        case 'movie':
+            movieType.innerText = "Фильм";
+            break;
+        case "series":
+            movieType.innerText = "Сериал";
+            break;
+        case "game":
+            movieType.innerText = "Игра";
+            break;
+        default:
+            movieType.innerText = movie.Type;
+            break;
+    }
+}; 
 
 // Появление/исчезновение popup
 const togglePopup = () => {
