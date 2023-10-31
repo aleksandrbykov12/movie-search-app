@@ -33,10 +33,6 @@ const searchMovieBtnHandler = (event) => {
     clearInput();
     console.log(movieName);
 
-    // fetch(`https://www.omdbapi.com/?s=${movieName}&apikey=${API_KEY}`)
-    // .then(response => response.json())
-    // .then(json => movies = json.Search) 
-
     fetch(`https://www.omdbapi.com/?s=${movieName}&apikey=${API_KEY}`)
     .then(response => response.json())
     .then(json => {
@@ -44,7 +40,7 @@ const searchMovieBtnHandler = (event) => {
         if (json.Response === 'False') {
             alert('Error')
             return;
-        }
+        };
         const movies = json.Search;
         console.log(movies)
         renderResponseMovies(movies)
@@ -89,17 +85,15 @@ const renderResponseMovies = (movies) => {
         movieYear.innerText = movie.Year;
         movieType.innerText = movie.Type;
 
-        movieItem.addEventListener('click', (event) => {
-            if (event.target.classList.contains("movies__item")) {
-                const movieID = movie.imdbID;
-                console.log(movieID);
-                fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`)
-                .then(response => response.json())
-                .then(json => {
-                    openPopup();
-                    renderDetailMovie(json);
-                })
-            };
+        movieItem.addEventListener("click", () => {
+            const movieID = movie.imdbID;
+            console.log(movieID);
+            fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`)
+            .then(response => response.json())
+            .then(json => {
+                openPopup();
+                renderDetailMovie(json);
+            });
         });
 
         });
@@ -130,19 +124,19 @@ const renderDetailMovie = (json) => {
     popupDirector.innerText = json.Director;
     popupScen.innerText = json.Writer;
     popupActor.innerText = json.Actors;
-}
+};
 
 // Появление popup с информацией о фильме
 const openPopup = () => {
     popupNode.classList.toggle("popup__open");
     bodyFixedNode.classList.toggle("body__fixed");
-}
+};
 
 // Исчезновение popup
 const closePopup = () => {
     popupNode.classList.toggle("popup__open");
     bodyFixedNode.classList.toggle("body__fixed");
-}
+};
 
 // Обработчики событий
 moviesBtnNode.addEventListener("click", searchMovieBtnHandler);
