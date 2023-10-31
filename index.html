@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Поиск фильмов</title>
+    <link rel="shortcut icon" href="resources/icon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/root.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="popup">
+      <div class="popup__content">
+        <button class="popup__close">X</button>
+        <ul class="popup__list">
+          <li class="popup__item">
+            <div class="popup__image">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+                alt=""
+                class="popup__poster"
+              />
+            </div>
+            <div class="popup__informations">
+              <h2 class="popup__title"></h2>
+              <p class="popup__year popup__names">
+                Год:
+                <span id="spanYear"></span>
+              </p>
+              <p class="popup__rating popup__names">
+                Рейтинг:
+                <span id="spanRating"></span>
+              </p>
+              <p class="popup__data popup__names">
+                Дата выхода:
+                <span id="spanData"></span>
+              </p>
+              <p class="popup__duration popup__names">
+                Продолжительность:
+                <span id="spanDuration"></span>
+              </p>
+              <p class="popup__genre popup__names">
+                Жанр:
+                <span id="spanGenre"></span>
+              </p>
+              <p class="popup__director popup__names">
+                Режиссер:
+                <span id="spanDirector"></span>
+              </p>
+              <p class="popup__scen popup__names">
+                Сценарий:
+                <span id="spanScen"></span>
+              </p>
+              <p class="popup__actor popup__names">
+                Актеры:
+                <span id="spanActor"></span>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <section class="movies">
+      <div class="container">
+        <button class="color-mode"></button>
+        <h1 class="title">Посик фильмов</h1>
+        <div class="movies__wrap">
+          <form action="" class="movies__form">
+            <input
+              placeholder="Введите название фильма"
+              type="text"
+              id="moviesInput"
+              class="movies__input"
+            />
+            <button id="moviesBtn" class="movies__btn"></button>
+          </form>
+        </div>
+        <div id="moviesResultWrap" class="movies__result-wrap">
+          <ul id="moviesList" class="movies__list">
+            <!-- <li class="movies__item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+                alt=""
+                class="movies__poster"
+              />
+              <div class="movies__inner">
+                <h2 class="movies__title">Title</h2>
+                <p class="movies__years">2023</p>
+                <p class="movies__type">movie</p>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script src="js/colorMode.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
