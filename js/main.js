@@ -17,7 +17,6 @@ const bodyFixedNode = document.querySelector("body");
 // Global Variables
 const API_KEY = "dc00a1a5";
 let movieName = null;
-// let movies = null;
 
 // ================FUNCTION'S================
 
@@ -91,7 +90,7 @@ const renderResponseMovies = (movies) => {
             fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`)
             .then(response => response.json())
             .then(json => {
-                openPopup();
+                togglePopup();
                 renderDetailMovie(json);
             });
         });
@@ -126,18 +125,19 @@ const renderDetailMovie = (json) => {
     popupActor.innerText = json.Actors;
 };
 
-// Появление popup с информацией о фильме
-const openPopup = () => {
+// Появление/исчезновение popup
+const togglePopup = () => {
     popupNode.classList.toggle("popup__open");
     bodyFixedNode.classList.toggle("body__fixed");
 };
 
-// Исчезновение popup
-const closePopup = () => {
-    popupNode.classList.toggle("popup__open");
-    bodyFixedNode.classList.toggle("body__fixed");
-};
+// Исчезвовение popup при клике вне области контента
+popupNode.addEventListener("click", (event) => {
+    if (!event.composedPath().includes(popupContentNode)) {
+        togglePopup();
+    };
+});
 
 // Обработчики событий
 moviesBtnNode.addEventListener("click", searchMovieBtnHandler);
-popupCloseNode.addEventListener("click", closePopup);
+popupCloseNode.addEventListener("click", togglePopup);
