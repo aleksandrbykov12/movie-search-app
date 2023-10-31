@@ -131,13 +131,13 @@ const togglePopup = () => {
     bodyFixedNode.classList.toggle("body__fixed");
 };
 
+// Обработчики событий
+moviesBtnNode.addEventListener("click", searchMovieBtnHandler);
+popupCloseNode.addEventListener("click", togglePopup);
+
 // Исчезвовение popup при клике вне области контента
 popupNode.addEventListener("click", (event) => {
     if (!event.composedPath().includes(popupContentNode)) {
         togglePopup();
     };
 });
-
-// Обработчики событий
-moviesBtnNode.addEventListener("click", searchMovieBtnHandler);
-popupCloseNode.addEventListener("click", togglePopup);
