@@ -30,18 +30,20 @@ const searchMovieBtnHandler = (event) => {
 
     movieName = getMovieName();
     clearInput();
-    console.log(movieName);
+    getMoviesArray();
+};
 
+// Получение массива объектов со списком фильмов
+const getMoviesArray = () => {
     fetch(`https://www.omdbapi.com/?s=${movieName}&apikey=${API_KEY}`)
     .then(response => response.json())
-    .then(json => {
-        console.log(json.Response)
-        if (json.Response === 'False') {
-            alert('Error')
+    .then(arrMovies => {
+        console.log(arrMovies.Response)
+        if (arrMovies.Response === 'False') {
+            alert('Фильм не найден или неккоректный запрос!')
             return;
         };
-        const movies = json.Search;
-        console.log(movies)
+        const movies = arrMovies.Search;
         renderResponseMovies(movies)
     });
 };
@@ -84,22 +86,25 @@ const renderResponseMovies = (movies) => {
         movieYear.innerText = movie.Year;
         translateMovieType(movie, movieType)
 
-        movieItem.addEventListener("click", () => {
-            const movieID = movie.imdbID;
-            console.log(movieID);
-            fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`)
-            .then(response => response.json())
-            .then(json => {
-                togglePopup();
-                renderDetailMovie(json);
-            });
-        });
+        movieItem.addEventListener("click", () => getDetailInfoMovie(movie));
 
         });
 };
 
+// Получение информации о фильме
+const getDetailInfoMovie = (movie) => {
+    const movieID = movie.imdbID;
+
+    fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=${API_KEY}`)
+    .then(response => response.json())
+    .then(detailMovie => {
+        togglePopup();
+        renderDetailMovie(detailMovie);
+    });
+};
+
 // Рендер подробной информации
-const renderDetailMovie = (json) => {
+const renderDetailMovie = (detailMovie) => {
     const popupPoster = document.querySelector(".popup__poster");
     const popupTitle = document.querySelector(".popup__title");
 
@@ -112,19 +117,20 @@ const renderDetailMovie = (json) => {
     const popupScen = document.getElementById("spanScen");
     const popupActor = document.getElementById("spanActor");
 
-    popupPoster.setAttribute("src", json.Poster);
+    popupPoster.setAttribute("src", detailMovie.Poster);
 
-    popupTitle.innerText = json.Title;
-    popupYear.innerText = json.Year;
-    popupRating.innerText = json.Rated;
-    popupData.innerText = json.Released;
-    popupDuration.innerText = json.Runtime;
-    popupGenre.innerText = json.Genre;
-    popupDirector.innerText = json.Director;
-    popupScen.innerText = json.Writer;
-    popupActor.innerText = json.Actors;
+    popupTitle.innerText = detailMovie.Title;
+    popupYear.innerText = detailMovie.Year;
+    popupRating.innerText = detailMovie.Rated;
+    popupData.innerText = detailMovie.Released;
+    popupDuration.innerText = detailMovie.Runtime;
+    popupGenre.innerText = detailMovie.Genre;
+    popupDirector.innerText = detailMovie.Director;
+    popupScen.innerText = detailMovie.Writer;
+    popupActor.innerText = detailMovie.Actors;
 };
 
+// Перевод типа фильма на русский
 const translateMovieType = (movie, movieType) => {
     switch (movie.Type) {
         case 'movie':

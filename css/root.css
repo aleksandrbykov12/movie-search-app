@@ -6,6 +6,7 @@
     --btn-bg: #6532F8;
     --hover-bg: #FDFDFD70;
     --color-text-year: #0094FF;
+    --close-btn-popup: url("../resources/close-white.png")
 }
 
 html.light {
@@ -13,4 +14,5 @@ html.light {
     --color-text: #181818;
     --btn-bg: #3004b4;
     --hover-bg: #D9D9D9;
+    --close-btn-popup: url("../resources/close.png")
 }
