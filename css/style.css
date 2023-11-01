@@ -1,5 +1,6 @@
 * {
     transition: background-color 0.3s ease-in-out;
+    transition: scale 0.3s ease-in-out;
 }
 
 body {
@@ -134,14 +135,17 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 999;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
 .popup__open {
     opacity: 1;
     visibility: visible;
+    backdrop-filter: blur(25px);
+    transition: all 0.3s ease-in-out;
 }
 
 .popup__content {
@@ -149,7 +153,8 @@ body {
     padding: 35px;
     min-width: 500px;
     min-height: 500px;
-    background-color: var(--color-bg);
+    /* background-color: var(--color-bg); */
+
     border-radius: 15px;
 }
 
