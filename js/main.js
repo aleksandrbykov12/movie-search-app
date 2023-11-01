@@ -40,7 +40,7 @@ const getMoviesArray = () => {
     .then(arrMovies => {
         console.log(arrMovies.Response)
         if (arrMovies.Response === 'False') {
-            alert('Фильм не найден или неккоректный запрос!')
+            alert('Фильм не найден или некорректный запрос!')
             return;
         };
         const movies = arrMovies.Search;
