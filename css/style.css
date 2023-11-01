@@ -1,6 +1,5 @@
 * {
     transition: background-color 0.3s ease-in-out;
-    transition: scale 0.3s ease-in-out;
 }
 
 body {
@@ -9,6 +8,10 @@ body {
     font-family: var(--global-font);
     background-color: var(--color-bg);
     color: var(--color-text);
+}
+
+button, a {
+    transition: scale 0.3s ease-in-out;
 }
 
 .body__fixed {
@@ -147,7 +150,7 @@ body {
     opacity: 1;
     visibility: visible;
     backdrop-filter: blur(25px);
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .popup__content {
